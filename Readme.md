@@ -1,3 +1,6 @@
+[![Build Status](https://api.travis-ci.org/BlueM/PHP-JavaScript-Serializer.svg?branch=master)](https://travis-ci.org/BlueM/PHP-JavaScript-Serializer)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/a2a2401a-906e-4f9d-b889-416890a620ca/mini.png)](https://insight.sensiolabs.com/projects/a2a2401a-906e-4f9d-b889-416890a620ca)
+
 Overview
 ========
 
@@ -28,23 +31,21 @@ Example serialization
 --------
 Input PHP data:
 
-	$var = [
-		'__default' => [
-			'id' => 1,
-			'category' => 2,
-			'i18n' =>
-				[
-					'key1' => 'A',
-					'key2' => 'L',
-					'key1Code' => 65,
-					'key2Code' => 76,
-				],
-		]
-	];
+    $var = [
+        '__default' => [
+            'id' => 1,
+            'category' => 2,
+            'i18n' =>
+                [
+                    'key1' => 'A',
+                    'key1Code' => 65,
+                ],
+        ]
+    ];
 
 Output string:
 
-    "{'__default': {'id': 1, 'category': 2, 'i18n': {'key1': 'A', 'key2': 'L', 'key1Code': 65, 'key2Code': 76}}}"
+    "{'__default': {'id': 1, 'category': 2, 'i18n': {'key1': 'A', 'key1Code': 65}}}"
 
 This string, when used as a variable value in JavaScript code, looks like this:  
 
@@ -53,9 +54,7 @@ This string, when used as a variable value in JavaScript code, looks like this:
             'id': 1,
             'category': 2,
             'i18n': {
-                'key1': 'A',
                 'key2': 'L',
-                'key1Code': 65,
                 'key2Code': 76
             }
         }
