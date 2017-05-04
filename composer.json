@@ -1,5 +1,5 @@
 {
-    "name": "bluem/js-serializer",
+    "name": "bluem/javascript-serializer",
     "description": "Dependency-free serialization of PHP data to a JavaScript representation",
     "type": "library",
     "license": "MIT",
