@@ -35,11 +35,10 @@ Input PHP data:
         '__default' => [
             'id' => 1,
             'category' => 2,
-            'i18n' =>
-                [
-                    'key1' => 'A',
-                    'key1Code' => 65,
-                ],
+            'i18n' => [
+                'key1' => 'A',
+                'key1Code' => 65,
+            ],
         ]
     ];
 
