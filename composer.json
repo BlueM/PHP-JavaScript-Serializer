@@ -1,0 +1,23 @@
+{
+    "name": "bluem/js-serializer",
+    "description": "Dependency-free serialization of PHP data to a JavaScript representation",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Carsten Bluem",
+            "email": "carsten@bluem.net"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "BlueM\\": "src/"
+        }
+    }
+}

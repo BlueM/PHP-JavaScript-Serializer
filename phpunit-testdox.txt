@@ -1,0 +1,20 @@
+BlueM\JavaScriptSerializer
+ [x] Null is serialized to a string containing null
+ [x] An integer is serialized to a string containing the integer
+ [x] A float is serialized to a string containing the float
+ [x] True is serialized to a string containing true
+ [x] False is serialized to a string containing false
+ [x] A string is serialized to a string where backslashes and single quotes are escaped
+ [x] An empty array is serialized to a string containing square brackets
+ [x] An indexed array is serialized to a string containing a list of values in square brackets
+ [x] An associated array is serialized to a string containing a javascript object
+ [x] A nested data structure is serialized to a javascript object
+ [x] An instance of a class containing a to array method is converted using that method
+ [x] An instance of a class containing a to string method is converted using that method
+ [x] A string returned froman instance of a json serializable class is serialized
+ [x] An array returned froman instance of a json serializable class is serialized
+ [x] A boolean returned froman instance of a json serializable class is serialized
+ [x] A float returned froman instance of a json serializable class is serialized
+ [x] An unserializable variable throws an exception
+ [x] An instance of an unserializable class throws an exception
+
