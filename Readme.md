@@ -96,8 +96,13 @@ ToDo
 Version History
 =================
 
-1.0
----
+1.0.1, 2017-10-14
+-----------------
+* Improve exception message (explicitly mention class name) when object is not serializable.
+* Improve doc comments and Readme.
+
+1.0, 2017-05-04
+----------------
 * First public version. Nothing else to say.
 
 
