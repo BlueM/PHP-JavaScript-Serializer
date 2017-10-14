@@ -23,8 +23,8 @@ class JavaScriptSerializer
     }
 
     /**
-     * Returns a string representing a JavaScript array or object declaration
-     * which is equivalent to the PHP array passed to this function
+     * Returns a string representing a JavaScript value which is equivalent
+     * to the PHP variable passed to this function.
      *
      * @param mixed $var
      *

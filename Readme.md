@@ -4,7 +4,7 @@
 Overview
 ========
 
-This library provides a simple, dependency-free serialization of PHP variables to strings which can be interpreted as JavaScript variables.
+This library provides a simple, dependency-free serialization of a PHP variable value / datastructure to strings which can be interpreted as a JavaScript value.
 
 The most typical use case will be the automated generation of JavaScript code in cases where the amount of data is notably and therefore serializing to JSON would suffer from the deserialization penalty and/or the larger size of JSON data.
 
@@ -26,42 +26,66 @@ Instantiate the class, call the `serialize()` method with any variable and use t
     $jss = new \BlueM\JavaScriptSerializer();
     $result = $jss->serialize($myVariable);
 
+The following datatypes can be handled:
 
-Example serialization
+* `null`
+* `string`
+* `float`
+* `int`
+* `array`
+* `object` – if the objects implements the `\JsonSerializable` interface, has a public `toArray` method or has a public `__toString` method. (The mentioned order is exactly the order in which the code performs the checks.)
+
+
+Examples
 --------
+
+**Example 1:** Scalar PHP value
+
+Input PHP data:
+
+    $var = 'Hello world';
+
+Value returned from `$serializer->serialize($var)` call:
+
+    Hello world
+
+**Example 2:** Array with numeric keys
+
+Input PHP data:
+
+    $var = ['A', 'B', 3.14, 4711];
+
+Value returned from `$serializer->serialize($var)` call:
+
+    ['A', 'B', 3.14, 4711]
+
+
+**Example 3:** Nested array
+ 
 Input PHP data:
 
     $var = [
-        '__default' => [
-            'id' => 1,
-            'category' => 2,
-            'i18n' => [
-                'key1' => 'A',
+        'foo' => 'bar',
+        'nested' => [
+            'id'       => 1,
+            'pi' => 3.14,
+            'key3' => null,
+            'bar'     => [
+                'key1'     => 'A',
                 'key1Code' => 65,
             ],
+            -200 => 'Hello world'
         ]
     ];
 
-Output string:
+Value returned from `$serializer->serialize($var)` call:
 
-    "{'__default': {'id': 1, 'category': 2, 'i18n': {'key1': 'A', 'key1Code': 65}}}"
+    {foo: 'bar', nested: {id: 1, pi: 3.14, key3: null, bar: {key1: 'A', key1Code: 65}, '-200': 'Hello world'}}
 
-This string, when used as a variable value in JavaScript code, looks like this:  
-
-    var foo = {
-        '__default': {
-            'id': 1,
-            'category': 2,
-            'i18n': {
-                'key2': 'L',
-                'key2Code': 76
-            }
-        }
-    };
 
 Known issues
 ------------
-* When creating object properties, strings that can be used as properties without quotes are inserted verbatim, without quotes. However, this decision is based on a very simple RegEx, which not only ignores the existence of ES symbols, but also [other property names that can be used without quotes](https://mothereff.in/js-properties#12e34). This has no influence on using the code in JavaScript, but only on the code size. But chances are you will use some sort of minification, anyways, so this should not be a problem.
+* When creating object properties, strings that can be used as properties without quotes are inserted verbatim, without quotes. However, this decision is based on a very simple RegEx, which not only ignores the existence of ECMAScript 2015 Symbols, but also [other property names that can be used without quotes](https://mothereff.in/js-properties#12e34). This has no influence on using the code in JavaScript, but only on the code size. But chances are you will use some sort of minification, so this should not be a problem.
 
 
 ToDo
