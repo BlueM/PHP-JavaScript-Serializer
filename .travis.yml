@@ -5,3 +5,4 @@ install:
 
 php:
   - 7
+  - 7.1
