@@ -96,8 +96,12 @@ class JavaScriptSerializer
             }
 
             throw new \RuntimeException(
-                'Serializing objects requires that the class implements '.
-                \JsonSerializable::class.' or has a public toArray() or __toString() method.'
+                sprintf(
+                    'Instance of class %s cannot be serialized (as the class neither '.
+                    'implements %s, nor has a public toArray() or __toString() method.',
+                    get_class($var),
+                    \JsonSerializable::class
+                )
             );
         }
 

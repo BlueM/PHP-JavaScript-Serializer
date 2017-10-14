@@ -251,7 +251,8 @@ EXPECTED;
     /**
      * @test
      * @expectedException \RuntimeException
-     * @expectedExceptionMessage Serializing objects requires that the class implements
+     * @expectedExceptionMessage DateTime cannot be serialized
+     * @expectedExceptionMessage neither implements JsonSerializable, nor
      */
     public function anInstanceOfAnUnserializableClassThrowsAnException()
     {
