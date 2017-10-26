@@ -33,7 +33,7 @@ The following datatypes can be handled:
 * `float`
 * `int`
 * `array`
-* `object` – if the objects implements the `\JsonSerializable` interface, has a public `toArray` method or has a public `__toString` method. (The mentioned order is exactly the order in which the code performs the checks.)
+* `object` – if the object implements the `\JsonSerializable` interface, has a public `toArray` method or has a public `__toString` method. (The mentioned order is exactly the order in which the code performs the checks.)
 
 
 Examples
@@ -45,9 +45,9 @@ Input PHP data:
 
     $var = 'Hello world';
 
-Value returned from `$serializer->serialize($var)` call:
+Value returned from `$serializer->serialize($var)` call will be this string:
 
-    Hello world
+    'Hello world'
 
 **Example 2:** Array with numeric keys
 
@@ -55,7 +55,7 @@ Input PHP data:
 
     $var = ['A', 'B', 3.14, 4711];
 
-Value returned from `$serializer->serialize($var)` call:
+Value returned from `$serializer->serialize($var)` call will be this string:
 
     ['A', 'B', 3.14, 4711]
 
@@ -64,23 +64,23 @@ Value returned from `$serializer->serialize($var)` call:
  
 Input PHP data:
 
-    $var = [
-        'foo' => 'bar',
+    [
+        'foo'    => 'bar',
         'nested' => [
-            'id'       => 1,
-            'pi' => 3.14,
-            'key3' => null,
-            'bar'     => [
-                'key1'     => 'A',
-                'key1Code' => 65,
+            'pi'     => 3.14,
+            'key'    => null,
+            'abc'    => "String \" with 'quotes'",
+            'My key' => 'Hello world',
+            'bar'    => [
+                'key'  => 'A',
+                'code' => 65,
             ],
-            -200 => 'Hello world'
         ]
-    ];
+    ]
 
-Value returned from `$serializer->serialize($var)` call:
+Value returned from `$serializer->serialize($var)` call will be this string:
 
-    {foo: 'bar', nested: {id: 1, pi: 3.14, key3: null, bar: {key1: 'A', key1Code: 65}, '-200': 'Hello world'}}
+    {foo: 'bar', nested: {pi: 3.14, key: null, abc: 'String " with \'quotes\'', 'My key': 'Hello world', bar: {key: 'A', code: 65}}}
 
 
 Known issues
