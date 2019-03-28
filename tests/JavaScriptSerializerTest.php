@@ -74,6 +74,16 @@ class JavaScriptSerializerTest extends TestCase
     /**
      * @test
      */
+    public function aNativeDatetimeInstanceIsSerializedToAJavascriptDateConstructor()
+    {
+        $jss = new JavaScriptSerializer();
+        static::assertSame('new Date(1553755387123)', $jss->serialize(\DateTime::createFromFormat('U.u', 1553755387.123)));
+        static::assertSame('new Date(0)', $jss->serialize(new \DateTime('@0')));
+    }
+
+    /**
+     * @test
+     */
     public function trueIsSerializedToAStringContainingTrue()
     {
         $jss = new JavaScriptSerializer();
@@ -204,7 +214,7 @@ EXPECTED;
     /**
      * @test
      */
-    public function aStringReturnedFromanInstanceOfAJsonSerializableClassIsSerialized()
+    public function aStringReturnedFromAnInstanceOfAJsonSerializableClassIsSerialized()
     {
         $jss = new JavaScriptSerializer();
         static::assertSame('--serialized--', $jss->serialize(new SerializableClass('--serialized--')));
@@ -213,7 +223,7 @@ EXPECTED;
     /**
      * @test
      */
-    public function anArrayReturnedFromanInstanceOfAJsonSerializableClassIsSerialized()
+    public function anArrayReturnedFromAnInstanceOfAJsonSerializableClassIsSerialized()
     {
         $jss = new JavaScriptSerializer();
         static::assertSame("{'a': 'B'}", $jss->serialize(new SerializableClass(['a' => 'B'])));
@@ -222,7 +232,7 @@ EXPECTED;
     /**
      * @test
      */
-    public function aBooleanReturnedFromanInstanceOfAJsonSerializableClassIsSerialized()
+    public function aBooleanReturnedFromAnInstanceOfAJsonSerializableClassIsSerialized()
     {
         $jss = new JavaScriptSerializer();
         static::assertSame('true', $jss->serialize(new SerializableClass(true)));
@@ -231,7 +241,7 @@ EXPECTED;
     /**
      * @test
      */
-    public function aFloatReturnedFromanInstanceOfAJsonSerializableClassIsSerialized()
+    public function aFloatReturnedFromAnInstanceOfAJsonSerializableClassIsSerialized()
     {
         $jss = new JavaScriptSerializer();
         static::assertSame('3.14', $jss->serialize(new SerializableClass(3.14)));
@@ -251,12 +261,12 @@ EXPECTED;
     /**
      * @test
      * @expectedException \RuntimeException
-     * @expectedExceptionMessage DateTime cannot be serialized
+     * @expectedExceptionMessage DateTimeZone cannot be serialized
      * @expectedExceptionMessage neither implements JsonSerializable, nor
      */
     public function anInstanceOfAnUnserializableClassThrowsAnException()
     {
         $jss = new JavaScriptSerializer();
-        static::assertSame("{'foo': 'Bar'}", $jss->serialize(new \DateTime()));
+        static::assertSame("{'foo': 'Bar'}", $jss->serialize(new \DateTimeZone('UTC')));
     }
 }

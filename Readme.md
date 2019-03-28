@@ -13,9 +13,9 @@ While I would have expected there are already some simililar libraries on packag
 
 Installation
 -------------
-Add `"bluem/javascript-serializer": "~1.0"` to the requirements in your `composer.json` file or run `composer require "bluem/javascript-serializer"` at the shell.
+Add `"bluem/javascript-serializer": "^1.0"` to the requirements in your `composer.json` file or run `composer require "bluem/javascript-serializer"` at the shell.
 
-As this library uses [semantic versioning](http://semver.org), you will get fixes and feature additions when running `composer update`, but not changes which break the API.
+As this library uses [semantic versioning](https://semver.org), you will get fixes and feature additions when running `composer update`, but not changes which break the API.
 
 
 Usage
@@ -33,6 +33,7 @@ The following datatypes can be handled:
 * `float`
 * `int`
 * `array`
+* `\DateTime` (converted to a JavaScript `Date` constructor call)
 * `object` – if the object implements the `\JsonSerializable` interface, has a public `toArray` method or has a public `__toString` method. (The mentioned order is exactly the order in which the code performs the checks.)
 
 
@@ -95,6 +96,10 @@ ToDo
 
 Version History
 =================
+
+1.1, 2019-03-28
+---------------
+* Native PHP `\DateTime` instances are converted to native JavaScript `Date` constructor calls
 
 1.0.1, 2017-10-14
 -----------------

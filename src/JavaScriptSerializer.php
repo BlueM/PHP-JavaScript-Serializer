@@ -95,6 +95,10 @@ class JavaScriptSerializer
                 return (string)$var;
             }
 
+            if ($var instanceof \DateTime) {
+                return 'new Date('.($var->format('U.u') * 1000).')';
+            }
+
             throw new \RuntimeException(
                 sprintf(
                     'Instance of class %s cannot be serialized (as the class neither '.
